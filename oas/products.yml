@@ -30,7 +30,33 @@ paths:
         "400":
           description: Invalid ID supplied
           content: {}
-  /product/{id}:
+    post:
+      summary: Create a product
+      description: Creates a new product
+      operationId: createProduct
+      requestBody:
+        description: Create a new Product
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductRequest'
+      responses:
+        "200":
+          description: successful operation
+          content:
+            "application/json":
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Product'
+              examples:
+                application/json:
+                  value:
+                    id: "1234"
+                    name: "some product"
+                    type: "food"
+                    price: 42
+  /products/{id}:
     get:
       summary: Find product by ID
       description: Returns a single product
@@ -67,6 +93,24 @@ paths:
           content: {}
 components:
   schemas:
+    ProductRequest:
+      type: object
+      required:
+        - name
+        - type
+        - price
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        name:
+          type: string
+        version:
+          type: string
+        price:
+          type: number
     Product:
       type: object
       required:

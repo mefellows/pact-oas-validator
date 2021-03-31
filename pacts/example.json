@@ -7,11 +7,51 @@
   },
   "interactions": [
     {
+      "description": "a request to create a product",
+      "request": {
+        "body": {
+          "name": "a credit card",
+          "type": "CREDIT_CARD",
+          "price": 28
+        },
+        "method": "POST",
+        "path": "/products",
+        "headers": {
+          "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
+        },
+        "matchingRules": {
+          "$.headers.Authorization": {
+            "match": "type"
+          }
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "id": "10",
+          "type": "CREDIT_CARD",
+          "price": 28
+        },
+        "matchingRules": {
+          "$.headers.Content-Type": {
+            "match": "regex",
+            "regex": "application\\/json;?.*"
+          },
+          "$.body": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
       "description": "a request to get a product",
       "providerState": "a product with ID 10 exists",
       "request": {
         "method": "GET",
-        "path": "/product/10",
+        "path": "/products/10",
         "headers": {
           "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
         },
@@ -47,7 +87,7 @@
       "providerState": "a product with ID 11 does not exist",
       "request": {
         "method": "GET",
-        "path": "/product/11",
+        "path": "/products/11",
         "headers": {
           "Authorization": "Bearer 2019-01-14T11:34:18.045Z"
         },
