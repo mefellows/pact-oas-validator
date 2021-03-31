@@ -24,12 +24,12 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/json; charset=utf-8"
+          "Content-Type": "application/json"
         },
         "body": {
           "id": "10",
           "type": "CREDIT_CARD",
-          "name": "28 Degrees"
+          "price": 28
         },
         "matchingRules": {
           "$.headers.Content-Type": {
@@ -81,7 +81,7 @@
       "response": {
         "status": 200,
         "headers": {
-          "Content-Type": "application/json; charset=utf-8"
+          "Content-Type": "application/json"
         },
         "body": [
           {

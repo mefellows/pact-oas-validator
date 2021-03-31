@@ -13,7 +13,7 @@ paths:
         "200":
           description: successful operation
           content:
-            "application/json; charset=utf-8":
+            "application/json":
               schema:
                 type: "array"
                 items:
@@ -47,7 +47,7 @@ paths:
         "200":
           description: successful operation
           content:
-            "application/json; charset=utf-8":
+            "application/json":
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/Cat'
@@ -72,7 +72,7 @@ components:
       required:
         - id
         - name
-        - type
+        - price
       additionalProperties: false
       properties:
         id:
@@ -90,7 +90,7 @@ components:
       required:
         - name
         - owner
-      # additionalProperties: false
+      additionalProperties: false
       properties:
         name:
           type: string
