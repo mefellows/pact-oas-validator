@@ -10,6 +10,7 @@
       "description": "a request to create a product",
       "request": {
         "body": {
+          "id": "10",
           "name": "a credit card",
           "type": "CREDIT_CARD",
           "price": 28

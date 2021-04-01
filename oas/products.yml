@@ -17,7 +17,7 @@ paths:
               schema:
                 type: "array"
                 items:
-                  $ref: '#/components/schemas/Product'
+                  $ref: '#/components/schemas/ProductResponse'
               examples:
                 application/json:
                   value:
@@ -48,7 +48,7 @@ paths:
             "application/json":
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/Product'
+                  - $ref: '#/components/schemas/ProductResponse'
               examples:
                 application/json:
                   value:
@@ -77,7 +77,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: '#/components/schemas/Cat'
-                  - $ref: '#/components/schemas/Product'
+                  - $ref: '#/components/schemas/ProductResponse'
               examples:
                 application/json:
                   value:
@@ -94,31 +94,26 @@ paths:
 components:
   schemas:
     ProductRequest:
-      type: object
-      required:
-        - name
-        - type
-        - price
-      additionalProperties: false
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        name:
-          type: string
-        version:
-          type: string
-        price:
-          type: number
+      allOf:
+        - $ref: '#/components/schemas/Product'
+    ProductResponse:
+      allOf:
+        - $ref: '#/components/schemas/Product'
+        # If you remove the "id" from the Product definition, you cannot use the "allOf" logical operation
+        # due to the "additionalProperties" issue describe
+        # - type: object
+        #   properties:
+        #     id:
+        #       type: string
     Product:
       type: object
       required:
-        - id
         - name
         - price
       additionalProperties: false
       properties:
+        # As above, comment out this property and uncomment the id from the ProductResponse schema
+        # to see the additionalProperties issue in action
         id:
           type: string
         type:
